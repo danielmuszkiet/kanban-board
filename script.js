@@ -124,9 +124,11 @@ function rebuildArray() {
   ];
   listColumns.forEach((cl, index) => {
     // Empty list Array with slice --> by reference!!!
+    // original array is changed!
     tempListArrays[index].splice(0, tempListArrays[index].length);
-    // Create new Arrays from columns
-    tempListArrays[index] = cl.children.map((i) => i.textContent);
+    for (let i = 0; i < cl.children.length; i++) {
+      tempListArrays[index].push(cl.children[i].textContent);
+    }
   });
   updateDOM();
 }
@@ -150,6 +152,7 @@ function drop(e) {
   listColumns.forEach((cl) => {
     cl.classList.remove("over");
   });
+  console.log("drop item to ", listColumns[currentColumn]);
   listColumns[currentColumn].appendChild(draggedItem);
   rebuildArray();
   beeingDraged = false;
