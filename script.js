@@ -152,7 +152,6 @@ function drop(e) {
   listColumns.forEach((cl) => {
     cl.classList.remove("over");
   });
-  console.log("drop item to ", listColumns[currentColumn]);
   listColumns[currentColumn].appendChild(draggedItem);
   rebuildArray();
   beeingDraged = false;
